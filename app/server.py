@@ -65,7 +65,7 @@ def serve_index():
     if not api_key:
         return "<h2>Error: GOOGLE_MAPS_API_KEY not set in .env</h2>", 500
 
-    with open(os.path.join(os.path.dirname(__file__), "index.html"), "r") as f:
+    with open(os.path.join(os.path.dirname(__file__), "index.html"), "r", encoding="utf-8") as f:
         html = f.read()
 
     # Inject the key into the Maps script tag at runtime
