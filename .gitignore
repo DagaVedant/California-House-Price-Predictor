@@ -1,0 +1,12 @@
+data/raw/
+data/processed/
+checkpoints/
+wandb/
+*.csv
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
+notebooks/.ipynb_checkpoints/
+.env

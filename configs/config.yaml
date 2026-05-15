@@ -1,0 +1,75 @@
+paths:
+  raw_data: data/raw/housing.csv
+  processed_data: data/processed/housing_processed.csv
+  checkpoint_dir: checkpoints/
+  checkpoint_name: xgb_california.pkl
+
+features:
+  numeric:
+    - longitude
+    - latitude
+    - housing_median_age
+    - total_rooms
+    - total_bedrooms
+    - population
+    - households
+    - median_income
+    - rooms_per_household
+    - bedrooms_per_room
+    - population_per_household
+    - dist_to_sf
+    - dist_to_la
+    - dist_to_san_diego
+    - dist_to_sacramento
+  categorical:
+    - ocean_proximity
+  target: median_house_value
+
+preprocessing:
+  test_size: 0.2
+  random_state: 42
+  fill_missing_strategy: median
+
+model:
+  name: xgboost
+  params:
+    n_estimators: 500
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    min_child_weight: 3
+    gamma: 0.1
+    reg_alpha: 0.1
+    reg_lambda: 1.0
+    random_state: 42
+    eval_metric: rmse
+    early_stopping_rounds: 50
+    # For local GTX 1650 training, set tree_method to gpu_hist
+    # For Colab CPU training, set to hist
+    tree_method: hist
+
+wandb:
+  project: california-house-predictor
+  entity: null  # set to your WandB username if needed
+  log_feature_importance: true
+  log_predictions: true
+
+server:
+  host: 0.0.0.0
+  port: 5000
+  debug: false
+
+cities:
+  san_francisco:
+    lat: 37.7749
+    lon: -122.4194
+  los_angeles:
+    lat: 34.0522
+    lon: -118.2437
+  san_diego:
+    lat: 32.7157
+    lon: -117.1611
+  sacramento:
+    lat: 38.5816
+    lon: -121.4944
