@@ -24,8 +24,8 @@ def clean_data(df, config):
 def engineer_features(df, config):
     cities = config["cities"]
 
-    df["rooms_per_household"] = df["total_rooms"] / df["households"]
-    df["bedrooms_per_room"] = df["total_bedrooms"] / df["total_rooms"]
+    df["rooms_per_household"]      = df["total_rooms"] / df["households"]
+    df["bedrooms_per_room"]        = df["total_bedrooms"] / df["total_rooms"]
     df["population_per_household"] = df["population"] / df["households"]
 
     df["dist_to_sf"] = haversine_distance(
@@ -53,7 +53,7 @@ def engineer_features(df, config):
 
 def get_feature_matrix(df, config):
     features = config["features"]["numeric"] + config["features"]["categorical"]
-    target = config["features"]["target"]
+    target   = config["features"]["target"]
     return df[features], df[target]
 
 
@@ -75,6 +75,12 @@ def prepare_dataset(config):
     print(f"Processed data saved to {config['paths']['processed_data']}")
 
     X, y = get_feature_matrix(df, config)
-    X_train, X_val, y_train, y_val = split_data(X, y, config)
+
+    # FIX: Log-transform the target so the model can generalise beyond the
+    # $500,001 Kaggle cap and predict luxury prices accurately.
+    # We store log(price) during training and exponentiate at inference.
+    y_log = np.log1p(y)
+
+    X_train, X_val, y_train, y_val = split_data(X, y_log, config)
     print(f"Train: {X_train.shape}, Val: {X_val.shape}")
     return X_train, X_val, y_train, y_val

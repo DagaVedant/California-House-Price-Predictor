@@ -5,14 +5,16 @@ import numpy as np
 class HousePriceModel:
     def __init__(self, config):
         params = config["model"]["params"].copy()
-        self.early_stopping_rounds = params.pop("early_stopping_rounds", 50)
-        self.model = xgb.XGBRegressor(**params)
+        early_stopping_rounds = params.pop("early_stopping_rounds", 50)
+        self.model = xgb.XGBRegressor(
+            **params,
+            early_stopping_rounds=early_stopping_rounds,
+        )
 
     def fit(self, X_train, y_train, X_val, y_val):
         self.model.fit(
             X_train, y_train,
             eval_set=[(X_val, y_val)],
-            early_stopping_rounds=self.early_stopping_rounds,
             verbose=50
         )
         return self

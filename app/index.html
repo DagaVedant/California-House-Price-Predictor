@@ -16,7 +16,6 @@
       flex-direction: column;
     }
 
-    /* Header */
     .header {
       background: #181c27;
       border-bottom: 1px solid #2a2f42;
@@ -26,22 +25,10 @@
       gap: 16px;
       z-index: 10;
     }
-    .header h1 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #fff;
-    }
-    .header span {
-      font-size: 0.85rem;
-      color: #7b82a0;
-    }
+    .header h1 { font-size: 1.1rem; font-weight: 600; color: #fff; }
+    .header span { font-size: 0.85rem; color: #7b82a0; }
 
-    /* Mode tabs */
-    .tabs {
-      display: flex;
-      gap: 4px;
-      margin-left: auto;
-    }
+    .tabs { display: flex; gap: 4px; margin-left: auto; }
     .tab-btn {
       padding: 7px 16px;
       border-radius: 6px;
@@ -52,20 +39,10 @@
       font-size: 0.85rem;
       transition: all 0.15s;
     }
-    .tab-btn.active {
-      background: #3b6fff;
-      border-color: #3b6fff;
-      color: #fff;
-    }
+    .tab-btn.active { background: #3b6fff; border-color: #3b6fff; color: #fff; }
 
-    /* Main layout */
-    .main {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
+    .main { display: flex; flex: 1; overflow: hidden; }
 
-    /* Sidebar */
     .sidebar {
       width: 320px;
       background: #181c27;
@@ -75,10 +52,7 @@
       overflow-y: auto;
     }
 
-    .sidebar-section {
-      padding: 20px;
-      border-bottom: 1px solid #2a2f42;
-    }
+    .sidebar-section { padding: 20px; border-bottom: 1px solid #2a2f42; }
     .sidebar-section h2 {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -87,24 +61,10 @@
       margin-bottom: 14px;
     }
 
-    /* Mode instructions */
-    .mode-hint {
-      font-size: 0.85rem;
-      color: #9ba3c0;
-      line-height: 1.5;
-      padding: 16px 20px;
-    }
+    .mode-hint { font-size: 0.85rem; color: #9ba3c0; line-height: 1.5; padding: 16px 20px; }
 
-    /* Form inputs */
-    .form-group {
-      margin-bottom: 14px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.78rem;
-      color: #9ba3c0;
-      margin-bottom: 5px;
-    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.78rem; color: #9ba3c0; margin-bottom: 5px; }
     .form-group input {
       width: 100%;
       padding: 9px 12px;
@@ -116,9 +76,7 @@
       outline: none;
       transition: border-color 0.15s;
     }
-    .form-group input:focus {
-      border-color: #3b6fff;
-    }
+    .form-group input:focus { border-color: #3b6fff; }
 
     .predict-btn {
       width: 100%;
@@ -135,7 +93,6 @@
     .predict-btn:hover { background: #2d5df0; }
     .predict-btn:disabled { background: #2a2f42; color: #7b82a0; cursor: not-allowed; }
 
-    /* Result card */
     .result-card {
       margin: 16px 20px;
       padding: 16px;
@@ -145,16 +102,8 @@
       display: none;
     }
     .result-card.visible { display: block; }
-    .result-price {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .result-range {
-      font-size: 0.8rem;
-      color: #7b82a0;
-      margin-top: 4px;
-    }
+    .result-price { font-size: 1.6rem; font-weight: 700; color: #fff; }
+    .result-range { font-size: 0.8rem; color: #7b82a0; margin-top: 4px; }
     .result-label {
       font-size: 0.72rem;
       text-transform: uppercase;
@@ -163,10 +112,7 @@
       margin-bottom: 6px;
     }
 
-    /* Legend */
-    .legend {
-      padding: 16px 20px;
-    }
+    .legend { padding: 16px 20px; }
     .legend h2 {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -180,54 +126,40 @@
       background: linear-gradient(to right, #22c55e, #eab308, #f97316, #ef4444);
       margin-bottom: 6px;
     }
-    .legend-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      color: #7b82a0;
-    }
+    .legend-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: #7b82a0; }
 
-    /* Map */
-    #map {
-      flex: 1;
-      position: relative;
-    }
+    .map-wrap { flex: 1; position: relative; }
+    #map { width: 100%; height: 100%; }
 
-    /* Loading spinner */
-    .spinner {
+    #spinner-overlay {
       display: none;
-      position: absolute;
-      top: 50%;
+      position: fixed;
+      top: 16px;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 28px;
-      height: 28px;
-      border: 3px solid #2a2f42;
-      border-top-color: #3b6fff;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      z-index: 5;
-    }
-    .spinner.visible { display: block; }
-    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    /* Tooltip */
-    .map-tooltip {
-      position: absolute;
+      transform: translateX(-50%);
       background: #181c27;
       border: 1px solid #2a2f42;
-      border-radius: 6px;
-      padding: 10px 14px;
-      pointer-events: none;
-      display: none;
-      z-index: 10;
+      border-radius: 8px;
+      padding: 10px 18px;
       font-size: 0.85rem;
+      color: #9ba3c0;
+      z-index: 9999;
+      pointer-events: none;
     }
-    .map-tooltip.visible { display: block; }
-    .map-tooltip-price { font-weight: 700; font-size: 1rem; color: #fff; }
-    .map-tooltip-coords { font-size: 0.75rem; color: #7b82a0; margin-top: 2px; }
+    #spinner-overlay.visible { display: block; }
 
-    /* Hidden panel */
+    .error-banner {
+      display: none;
+      margin: 0 20px 12px;
+      padding: 10px 14px;
+      background: #2a1515;
+      border: 1px solid #7f1d1d;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: #fca5a5;
+    }
+    .error-banner.visible { display: block; }
+
     .panel-heatmap, .panel-address { display: none; }
     .panel-heatmap.active, .panel-address.active { display: block; }
   </style>
@@ -235,9 +167,7 @@
 <body>
 
 <div class="header">
-  <div>
-    <h1>🏡 California House Price Predictor</h1>
-  </div>
+  <div><h1>🏡 California House Price Predictor</h1></div>
   <span>XGBoost · ~20k training samples</span>
   <div class="tabs">
     <button class="tab-btn active" id="tab-heatmap" onclick="setMode('heatmap')">🗺 Heatmap</button>
@@ -248,11 +178,12 @@
 <div class="main">
   <div class="sidebar">
 
-    <!-- Heatmap panel -->
     <div class="panel-heatmap active" id="panel-heatmap">
       <p class="mode-hint">
-        Click anywhere on the California map to get a predicted median house price for that area. Color overlay shows price gradient across the state.
+        Click anywhere on the California map to get a predicted median house price for that area.
+        Each click adds a colored circle — green is cheaper, red is more expensive.
       </p>
+      <div class="error-banner" id="heatmap-error"></div>
       <div class="result-card" id="heatmap-result">
         <div class="result-label">Predicted Median Price</div>
         <div class="result-price" id="heatmap-price">—</div>
@@ -262,41 +193,37 @@
         <h2>Price Legend</h2>
         <div class="legend-bar"></div>
         <div class="legend-labels">
-          <span>$80k</span>
-          <span>$300k</span>
-          <span>$500k</span>
-          <span>$800k+</span>
+          <span>$80k</span><span>$300k</span><span>$500k</span><span>$800k+</span>
         </div>
       </div>
     </div>
 
-    <!-- Address lookup panel -->
     <div class="panel-address" id="panel-address">
       <div class="sidebar-section">
         <h2>Property Details</h2>
         <div class="form-group">
-          <label>Address</label>
+          <label for="address-input">Address</label>
           <input type="text" id="address-input" placeholder="123 Main St, Los Angeles, CA" />
         </div>
         <div class="form-group">
-          <label>Bedrooms</label>
-          <input type="number" id="input-bedrooms" value="3" min="1" max="10" />
+          <label for="input-bedrooms">Bedrooms</label>
+          <input type="number" id="input-bedrooms" value="3" min="1" max="20" />
         </div>
         <div class="form-group">
-          <label>Square Footage</label>
+          <label for="input-sqft">Square Footage</label>
           <input type="number" id="input-sqft" value="1500" min="200" />
         </div>
         <div class="form-group">
-          <label>Year Built</label>
-          <input type="number" id="input-year" value="1990" min="1850" max="2024" />
+          <label for="input-year">Year Built</label>
+          <input type="number" id="input-year" value="1990" min="1850" max="2025" />
         </div>
         <div class="form-group">
-          <label>Median Household Income (×$10k)</label>
-          <input type="number" id="input-income" value="4.0" step="0.5" min="0.5" max="15" />
+          <label for="input-income">Area Median Income (×$10k) — e.g. 4.5 = $45k/yr</label>
+          <input type="number" id="input-income" value="4.5" step="0.5" min="0.5" max="15" />
         </div>
+        <div class="error-banner" id="address-error"></div>
         <button class="predict-btn" id="predict-btn" onclick="predictAddress()">Predict Price</button>
       </div>
-
       <div class="result-card" id="address-result">
         <div class="result-label">Predicted Price</div>
         <div class="result-price" id="address-price">—</div>
@@ -306,34 +233,27 @@
 
   </div>
 
-  <div id="map">
-    <div class="spinner" id="spinner"></div>
-    <div class="map-tooltip" id="tooltip">
-      <div class="map-tooltip-price" id="tooltip-price"></div>
-      <div class="map-tooltip-coords" id="tooltip-coords"></div>
-    </div>
+  <div class="map-wrap">
+    <div id="map"></div>
+    <div id="spinner-overlay">⏳ Predicting...</div>
   </div>
 </div>
 
-<!-- Replace __GOOGLE_MAPS_API_KEY__ with your actual key -->
 <script src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_MAPS_API_KEY__&libraries=places&callback=initMap" async defer></script>
 
 <script>
   const API_BASE = "http://localhost:5000";
-  let map, heatmapLayer, geocoder, currentMode = "heatmap";
-  let heatmapData = [];
+  let map, geocoder, currentMode = "heatmap";
   let addressMarker = null;
 
-  // ─── Mode Switching ──────────────────────────────────────────────
-  function setMode(mode) {
-    currentMode = mode;
-    document.getElementById("panel-heatmap").classList.toggle("active", mode === "heatmap");
-    document.getElementById("panel-address").classList.toggle("active", mode === "address");
-    document.getElementById("tab-heatmap").classList.toggle("active", mode === "heatmap");
-    document.getElementById("tab-address").classList.toggle("active", mode === "address");
+  function priceToColor(price) {
+    const t = Math.min(Math.max((price - 80000) / (800000 - 80000), 0), 1);
+    const r = Math.round(34  + t * (239 - 34));
+    const g = Math.round(197 - t * (197 - 68));
+    const b = Math.round(94  - t * (94  - 68));
+    return `rgb(${r},${g},${b})`;
   }
 
-  // ─── Map Init ────────────────────────────────────────────────────
   function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 36.7783, lng: -119.4179 },
@@ -342,89 +262,93 @@
       styles: darkMapStyle(),
       restriction: {
         latLngBounds: { north: 42.1, south: 32.5, east: -114.1, west: -124.5 },
-        strictBounds: false
-      }
+        strictBounds: false,
+      },
     });
 
     geocoder = new google.maps.Geocoder();
 
-    heatmapLayer = new google.maps.visualization.HeatmapLayer({ map: map, radius: 25 });
-
     map.addListener("click", async (e) => {
       if (currentMode !== "heatmap") return;
-      const lat = e.latLng.lat();
-      const lng = e.latLng.lng();
-      await fetchHeatmapPoint(lat, lng);
+      await fetchHeatmapPoint(e.latLng.lat(), e.latLng.lng());
     });
   }
 
-  // ─── Heatmap click prediction ────────────────────────────────────
+  function setMode(mode) {
+    currentMode = mode;
+    document.getElementById("panel-heatmap").classList.toggle("active", mode === "heatmap");
+    document.getElementById("panel-address").classList.toggle("active", mode === "address");
+    document.getElementById("tab-heatmap").classList.toggle("active",  mode === "heatmap");
+    document.getElementById("tab-address").classList.toggle("active",  mode === "address");
+  }
+
   async function fetchHeatmapPoint(lat, lon) {
     showSpinner(true);
+    showError("heatmap-error", null);
     try {
       const res = await fetch(`${API_BASE}/predict/location`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lat, lon })
+        body: JSON.stringify({ lat, lon }),
       });
-      const data = await res.json();
-      const price = data.predicted_price;
+      if (!res.ok) throw new Error(`Server ${res.status}`);
+      const { predicted_price: price } = await res.json();
 
-      // Show result in sidebar
       document.getElementById("heatmap-result").classList.add("visible");
-      document.getElementById("heatmap-price").textContent = formatPrice(price);
-      document.getElementById("heatmap-coords").textContent =
-        `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+      document.getElementById("heatmap-price").textContent  = formatPrice(price);
+      document.getElementById("heatmap-coords").textContent = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
 
-      // Add to heatmap
-      const weight = Math.min(price / 500000, 1.0);
-      heatmapData.push({ location: new google.maps.LatLng(lat, lon), weight });
-      heatmapLayer.setData(heatmapData);
+      new google.maps.Circle({
+        map,
+        center:       { lat, lng: lon },
+        radius:       8000,
+        fillColor:    priceToColor(price),
+        fillOpacity:  0.55,
+        strokeWeight: 0,
+      });
 
     } catch (err) {
-      alert("Could not reach the Flask server. Make sure server.py is running.");
+      showError("heatmap-error", "Could not reach the Flask server. Is server.py running?");
     } finally {
       showSpinner(false);
     }
   }
 
-  // ─── Address lookup prediction ───────────────────────────────────
   async function predictAddress() {
     const address = document.getElementById("address-input").value.trim();
-    if (!address) { alert("Please enter an address."); return; }
+    if (!address) { showError("address-error", "Please enter an address."); return; }
 
+    showError("address-error", null);
     const btn = document.getElementById("predict-btn");
-    btn.disabled = true;
-    btn.textContent = "Looking up...";
+    btn.disabled    = true;
+    btn.textContent = "Looking up address...";
 
     geocoder.geocode({ address }, async (results, status) => {
       if (status !== "OK" || !results[0]) {
-        alert("Address not found. Try a more specific address.");
+        showError("address-error", "Address not found. Try a more specific address.");
         btn.disabled = false; btn.textContent = "Predict Price";
         return;
       }
 
-      const loc = results[0].geometry.location;
-      const lat = loc.lat(), lon = loc.lng();
-
-      const year = parseInt(document.getElementById("input-year").value) || 1990;
-      const houseAge = new Date().getFullYear() - year;
-
-      const body = {
-        lat, lon,
-        bedrooms: parseInt(document.getElementById("input-bedrooms").value),
-        sqft: parseFloat(document.getElementById("input-sqft").value),
-        house_age: houseAge,
-        median_income: parseFloat(document.getElementById("input-income").value)
-      };
+      const loc      = results[0].geometry.location;
+      const lat      = loc.lat(), lon = loc.lng();
+      const year     = parseInt(document.getElementById("input-year").value) || 1990;
+      const houseAge = Math.max(0, new Date().getFullYear() - year);
 
       btn.textContent = "Predicting...";
       try {
         const res = await fetch(`${API_BASE}/predict/address`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
+          body: JSON.stringify({
+            lat, lon,
+            bedrooms:      parseInt(document.getElementById("input-bedrooms").value),
+            sqft:          parseFloat(document.getElementById("input-sqft").value),
+            house_age:     houseAge,
+            median_income: parseFloat(document.getElementById("input-income").value),
+          }),
         });
+        if (!res.ok) throw new Error(`Server ${res.status}`);
         const data = await res.json();
 
         document.getElementById("address-result").classList.add("visible");
@@ -432,53 +356,53 @@
         document.getElementById("address-range").textContent =
           `Range: ${formatPrice(data.confidence_low)} – ${formatPrice(data.confidence_high)}`;
 
-        // Drop pin
         if (addressMarker) addressMarker.setMap(null);
         addressMarker = new google.maps.Marker({
-          position: { lat, lng: lon },
           map,
+          position: { lat, lng: lon },
           title: formatPrice(data.predicted_price),
           label: {
             text: formatPriceShort(data.predicted_price),
             color: "#fff",
             fontWeight: "bold",
-            fontSize: "12px"
-          }
+            fontSize: "12px",
+          },
         });
         map.panTo({ lat, lng: lon });
-        map.setZoom(12);
+        map.setZoom(13);
 
       } catch (err) {
-        alert("Could not reach the Flask server. Make sure server.py is running.");
+        showError("address-error", "Could not reach the Flask server. Is server.py running?");
       } finally {
-        btn.disabled = false;
+        btn.disabled    = false;
         btn.textContent = "Predict Price";
       }
     });
   }
 
-  // ─── Helpers ─────────────────────────────────────────────────────
-  function formatPrice(p) {
-    return "$" + Math.round(p).toLocaleString();
-  }
+  function formatPrice(p)      { return "$" + Math.round(p).toLocaleString(); }
   function formatPriceShort(p) {
     if (p >= 1e6) return `$${(p / 1e6).toFixed(1)}M`;
     return `$${Math.round(p / 1000)}k`;
   }
   function showSpinner(show) {
-    document.getElementById("spinner").classList.toggle("visible", show);
+    document.getElementById("spinner-overlay").classList.toggle("visible", show);
+  }
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    if (msg) { el.textContent = msg; el.classList.add("visible"); }
+    else      { el.textContent = "";  el.classList.remove("visible"); }
   }
 
-  // ─── Dark map style ───────────────────────────────────────────────
   function darkMapStyle() {
     return [
-      { elementType: "geometry", stylers: [{ color: "#1a1f2e" }] },
-      { elementType: "labels.text.fill", stylers: [{ color: "#8a92b0" }] },
+      { elementType: "geometry",           stylers: [{ color: "#1a1f2e" }] },
+      { elementType: "labels.text.fill",   stylers: [{ color: "#8a92b0" }] },
       { elementType: "labels.text.stroke", stylers: [{ color: "#1a1f2e" }] },
       { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#2a2f42" }] },
-      { featureType: "road", elementType: "geometry", stylers: [{ color: "#2a2f42" }] },
-      { featureType: "water", elementType: "geometry", stylers: [{ color: "#0f1520" }] },
-      { featureType: "landscape", elementType: "geometry", stylers: [{ color: "#151924" }] }
+      { featureType: "road",           elementType: "geometry", stylers: [{ color: "#2a2f42" }] },
+      { featureType: "water",          elementType: "geometry", stylers: [{ color: "#0f1520" }] },
+      { featureType: "landscape",      elementType: "geometry", stylers: [{ color: "#151924" }] },
     ];
   }
 </script>

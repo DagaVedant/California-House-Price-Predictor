@@ -1,20 +1,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-import wandb
 
 
-def compute_metrics(y_true, y_pred):
+def compute_metrics(y_true_log, y_pred_log):
+    y_true = np.expm1(y_true_log)
+    y_pred = np.expm1(y_pred_log)
     rmse = np.sqrt(mean_squared_error(y_true, y_pred))
-    mae = mean_absolute_error(y_true, y_pred)
-    r2 = r2_score(y_true, y_pred)
+    mae  = mean_absolute_error(y_true, y_pred)
+    r2   = r2_score(y_true, y_pred)
     return {"RMSE": rmse, "MAE": mae, "R2": r2}
 
 
 def print_metrics(metrics):
     print("\n--- Evaluation Metrics ---")
-    for k, v in metrics.items():
-        print(f"  {k}: {v:,.2f}")
+    print(f"  RMSE : ${metrics['RMSE']:>12,.0f}")
+    print(f"  MAE  : ${metrics['MAE']:>12,.0f}")
+    print(f"  R²   : {metrics['R2']:.4f}")
     print("--------------------------\n")
 
 
@@ -30,10 +32,12 @@ def plot_feature_importance(importance_dict, save_path="checkpoints/feature_impo
     plt.savefig(save_path)
     plt.close()
     print(f"Feature importance chart saved to {save_path}")
-    return fig
 
 
-def plot_predictions(y_true, y_pred, save_path="checkpoints/pred_vs_actual.png"):
+def plot_predictions(y_true_log, y_pred_log, save_path="checkpoints/pred_vs_actual.png"):
+    y_true = np.expm1(y_true_log)
+    y_pred = np.expm1(y_pred_log)
+
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.scatter(y_true, y_pred, alpha=0.3, s=10, color="steelblue")
     max_val = max(y_true.max(), y_pred.max())
@@ -46,17 +50,3 @@ def plot_predictions(y_true, y_pred, save_path="checkpoints/pred_vs_actual.png")
     plt.savefig(save_path)
     plt.close()
     print(f"Prediction scatter plot saved to {save_path}")
-    return fig
-
-
-def log_to_wandb(metrics, importance_dict, y_true, y_pred, config):
-    wandb.log(metrics)
-
-    importance_fig = plot_feature_importance(importance_dict)
-    pred_fig = plot_predictions(y_true, y_pred)
-
-    if config["wandb"]["log_feature_importance"]:
-        wandb.log({"feature_importance": wandb.Image(importance_fig)})
-
-    if config["wandb"]["log_predictions"]:
-        wandb.log({"pred_vs_actual": wandb.Image(pred_fig)})
