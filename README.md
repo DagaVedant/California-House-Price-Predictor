@@ -128,4 +128,4 @@ Then open `app/index.html` in your browser. The Flask server must be running for
 
 ---
 
-Author: Vedant Daga
+Feel free to use this code under MIT License
